@@ -4,8 +4,9 @@ import com.vwap.model.PriceData;
 
 import java.text.DecimalFormat;
 import java.time.Instant;
-import java.time.ZoneId;
-import java.util.*;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.logging.Logger;
@@ -38,7 +39,7 @@ public final class Calculator {
      *
      * @param update The price update to add
      */
-    public final void addPriceUpdate(PriceData update) {
+    public void addPriceUpdate(PriceData update) {
         final String updateCurrencyPair = update.getCurrencyPair();
 
         // Get or create the data queue for the currency pair
@@ -84,7 +85,7 @@ public final class Calculator {
      * @param currencyPair The currency pair to get VWAP for
      * @return The latest VWAP result, or null if no data exists for this currency pair
      */
-    public final PriceData getCurrentVWAP(String currencyPair) {
+    public PriceData getCurrentVWAP(String currencyPair) {
         return latestVWAP.get(currencyPair);
     }
 
@@ -93,7 +94,7 @@ public final class Calculator {
      *
      * @return Map of currency pairs to their latest VWAP results
      */
-    public final Map<String, PriceData> getAllVWAPs() {
+    public Map<String, PriceData> getAllVWAPs() {
         return Collections.unmodifiableMap(latestVWAP);
     }
 }

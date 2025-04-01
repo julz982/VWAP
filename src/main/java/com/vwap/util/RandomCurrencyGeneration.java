@@ -14,15 +14,15 @@ public final class RandomCurrencyGeneration {
     /* Random generation for validation/testing purposes. */
     private static final Random RANDOM = new Random();
 
+    private static final List<String> CURRENCY_PAIRS = List.of("AUD/USD", "USD/JPY", "NZD/GBP",
+            "AUD/GBP", "EUR/GBP", "EUR/USD", "AUD/JPY");
+
     /**
      * Used only for the purpose of this exercise to simulate a stream of price data.
      *
      * @return randomly generated {@link PriceData}
      */
     public static PriceData generateRandomPriceData() {
-
-        List<String> CURRENCY_PAIRS = List.of("AUD/USD", "USD/JPY", "NZD/GBP",
-                "AUD/GBP", "EUR/GBP", "EUR/USD", "AUD/JPY");
 
         String currencyPair = CURRENCY_PAIRS.get(RANDOM.nextInt(CURRENCY_PAIRS.size()));
         double price = getRandomPrice(currencyPair);

@@ -1,10 +1,8 @@
 package com.vwap.calculator;
 
-import org.junit.Test;
-
-import com.vwap.calculator.Calculator;
 import com.vwap.model.PriceData;
 import org.junit.Test;
+
 import java.time.Instant;
 
 import static org.junit.Assert.assertEquals;
@@ -56,7 +54,7 @@ public class CalculatorTest {
         System.err.println("now: " + now);
 
         // Add one update now
-        PriceData update1 = new PriceData(now, "EUR/USD", 1.1000, (long) 100000);
+        PriceData update1 = new PriceData(now, "EUR/USD", 1.1000, 100000);
         calculator.addPriceUpdate(update1);
 
         // Add another update from 59 minutes ago (should be included)

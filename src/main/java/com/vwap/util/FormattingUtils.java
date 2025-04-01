@@ -13,6 +13,9 @@ public final class FormattingUtils {
     /* The logger for the class. */
     private static final Logger LOGGER = Logger.getLogger(FormattingUtils.class.getName());
 
+    /* The time zone to be used. */
+    public static final String ZONE_ID = "Australia/Sydney";
+
     /**
      * Convert the time from string format to {@link Instant}.
      *
@@ -22,7 +25,7 @@ public final class FormattingUtils {
     public static Instant timeAsInstant(final String timeAsString) {
         try {
             LocalTime localTime = LocalTime.parse(timeAsString.toLowerCase(), TIME_FORMATTER);
-            LocalDate today = LocalDate.now(ZoneId.of("Australia/Sydney"));
+            LocalDate today = LocalDate.now(ZoneId.of(ZONE_ID));
             return LocalDateTime.of(today, localTime).toInstant(ZoneOffset.UTC);
         } catch (DateTimeParseException e) {
             LOGGER.severe("Invalid time format: " + timeAsString);

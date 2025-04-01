@@ -3,7 +3,8 @@ package com.vwap.model;
 import java.text.DecimalFormat;
 import java.time.Instant;
 
-import static com.vwap.util.FormattingUtils.*;
+import static com.vwap.util.FormattingUtils.timeAsInstant;
+import static com.vwap.util.FormattingUtils.volumeFormat;
 
 /**
  * Class representing a price update event.
@@ -25,10 +26,10 @@ public final class PriceData {
     /**
      * Constructs a new {@link PriceData}.
      *
-     * @param timestamp the timestamp when the price update occurred, in nanoseconds since epoch
+     * @param timestamp    the timestamp when the price update occurred, in nanoseconds since epoch
      * @param currencyPair the currency pair identifier (e.g., "EUR/USD")
-     * @param price the price of the pairing
-     * @param volume the amount purchased in the transaction
+     * @param price        the price of the pairing
+     * @param volume       the amount purchased in the transaction
      */
     public PriceData(final Instant timestamp, final String currencyPair, final double price, final long volume) {
         this.timestamp = timestamp;
@@ -40,10 +41,10 @@ public final class PriceData {
     /**
      * Constructs a new {@link PriceData}.
      *
-     * @param timestamp the timestamp when the price update occurred, in nanoseconds since epoch
+     * @param timestamp    the timestamp when the price update occurred, in nanoseconds since epoch
      * @param currencyPair the currency pair identifier (e.g., "EUR/USD")
-     * @param price the price of the pairing
-     * @param volume the amount purchased in the transaction
+     * @param price        the price of the pairing
+     * @param volume       the amount purchased in the transaction
      */
     public PriceData(final String timestamp, final String currencyPair, final double price, final String volume) {
         this.timestamp = timeAsInstant(timestamp);
@@ -55,7 +56,7 @@ public final class PriceData {
     /**
      * @return the currency pair identifier (e.g., "EUR/USD")
      */
-    public final String getCurrencyPair() {
+    public String getCurrencyPair() {
         return currencyPair;
     }
 
@@ -63,26 +64,26 @@ public final class PriceData {
      * @return the timestamp when the price update occurred, in nanoseconds
      * since epoch
      */
-    public final Instant getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 
     /**
      * @return the price of the pairing
      */
-    public final double getPrice() {
+    public double getPrice() {
         return Double.parseDouble(new DecimalFormat("#.####").format(price));
     }
 
     /**
      * @return the amount purchased in the transaction
      */
-    public final long getVolume() {
+    public long getVolume() {
         return volume;
     }
 
     @Override
-    public final String toString() {
+    public String toString() {
         return "PriceData{" +
                 "timestamp=" + timestamp +
                 ", currencyPair='" + currencyPair + '\'' +
